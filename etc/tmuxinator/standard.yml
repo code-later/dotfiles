@@ -3,14 +3,9 @@
 name: standard
 root: ~/
 
-
 windows:
-  - editor:
+  - playground:
       layout: main-horizontal
       panes:
-        - #
-  - mail:
-      layout: main-horizontal
-      panes:
-        - cd ~/Downloads; TERM=screen-256color mutt
-        - offlineimap
+        - cd ~/Code/sandbox
+        - cd ~/Downloads

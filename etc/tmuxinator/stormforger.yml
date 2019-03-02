@@ -8,12 +8,11 @@ windows:
       root: ~/Code/projects/stormforger.com/
       layout: main-horizontal
       panes:
-        - # empty
+        - cd src/forge
         - cd src/forge
         - cd src/infra
-  - forge-box:
-      root: ~/Code/projects/stormforger.com/
+  - forge-sandbox:
+      root: ~/Code/projects/stormforger.com/src/forge/
       layout: main-horizontal
       panes:
-        - ssh -A smith@local.stormforger.net
-        - ssh -A smith@local.stormforger.net
+        - # empty

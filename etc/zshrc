@@ -79,7 +79,7 @@ done
 
 # custom configs are taken from this file
 if [ -f ~/.zsh_config_for_`whoami` ]; then
-  source ~/.zsh_config_for_`whoami`
+    source ~/.zsh_config_for_`whoami`
 fi
 
 # added by travis gem

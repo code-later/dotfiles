@@ -1,3 +1,6 @@
+export GOPATH=/Users/dbreuer/Code/go
+export PATH=.bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:/usr/local/share/npm/bin:${GOPATH//://bin:}/bin
+
 typeset -U fpath
 
 zsh_cache=${HOME}/.zsh_cache

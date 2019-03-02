@@ -24,7 +24,7 @@ alias quake3.config='vim ~/Library/Application\ Support/Quake3/cpma/cfg/cpl-serv
 alias quake3.nb='open /Applications/ioquake3/ioquake3-1.36.app --args +set r_fullscreen "1" +set r_customaspect "1" +set r_customwidth "1440" +set r_customheight "900" +set r_mode "-1" +set fs_game cpma +exec cfg/cpl-server.cfg'
 alias quake3.24='open /Applications/ioquake3/ioquake3-1.36.app --args +set r_fullscreen "1" +set r_customaspect "1" +set r_customwidth "1920" +set r_customheight "1200" +set r_mode "-1" +set fs_game cpma +exec cfg/cpl-server.cfg'
 
-alias gemi="gem install --no-ri --no-rdoc"
+alias gemi="gem install --no-doc"
 
 # Git aliases
 
