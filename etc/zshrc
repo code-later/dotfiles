@@ -1,100 +1,68 @@
-#! /bin/zsh
+export GOPATH=/Users/dbreuer/Code/go
+export PATH=.bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:/usr/local/share/npm/bin:${GOPATH//://bin:}/bin:$PATH
 
-export LANG="en_us.utf-8"
-export lang="en_us.utf-8"
-export language="en_us.utf-8"
-export lc_all="en_us.utf-8"
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/dbreuer/.oh-my-zsh"
 
-# if [[ -f $HOME/.zsh.d/base16-pinkiepie.dark.sh ]]; then
-#   source $HOME/.zsh.d/base16-pinkiepie.dark.sh
-# fi
+#ZSH_THEME="dracula"
+# ZSH_THEME="muse"
+#ZSH_THEME="norm"
+#ZSH_THEME="smt"
+ZSH_THEME="sorin"
 
-# Add custom completions and prompt to fpath
-fpath=(~/.zsh.d/custom_funcs $fpath)
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
-# Always use the coreutils if present
-if [[ -d /usr/local/opt/coreutils/libexec/gnubin ]]; then
-  PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-fi
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
 
-# Load zshuery
-source ${HOME}/.zshuery/zshuery.sh
-load_defaults
-load_aliases
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
 
-setopt extended_glob
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Configure colors
-if [[ -x dircolors ]]; then
-  eval "`dircolors ~/.zsh.d/dircolors`"
-  export ZLS_COLORS=$LS_COLORS
-fi
+# Which plugins would you like to load?
+plugins=(
+    brew
+    chruby
+    docker
+    dotenv
+    emacs
+    iterm2
+    git
+    history-substring-search
+    osx
+    rake
+    ruby
+    tmux
+    tmuxinator
+    vagrant-prompt
+    vagrant
+)
 
-# Configure completion
-if [[ -d /usr/local/share/zsh-completions ]]; then
-  load_completion /usr/local/share/zsh-completions
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+
+# # Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
 else
-  load_completion ${HOME}/.zshuery/completion/src
+  export EDITOR='vim'
 fi
 
-# Setup editor
-export VISUAL='emacsclient -a \"\" -t'
-export EDITOR='emacsclient -a \"\" -t'
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
 
-# Use another histfile
-[ -w $zsh_cache ] && HISTFILE=$zsh_cache/history
+# Manually load syntax highlighting
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Set options
-setopt path_dirs
-setopt auto_pushd               # make cd push the dir to a stack
-setopt long_list_jobs
-autoload -U is-at-least
-is-at-least 4.3.0 && {
-  unsetopt hist_save_by_copy
-}
-
-LISTMAX=1000                # never ask
-NULLCMD='cat'               # use cat for > null commands
-REPORTTIME=2                # report time if execution exceeds amount of seconds
-LOGCHECK=60
-watch=(notme)               # watch login/logout
-DIRSTACKSIZE=10                 # Max. size of the stack befor it gets truncated
-
-## Setup the default pager
-export PAGER=less
-export LESS="-X"
-
-# http://xanana.ucsc.edu/~wgscott/wordpress_new/wordpress/?p=12
-typeset -ga preexec_functions
-typeset -ga precmd_functions
-typeset -ga chpwd_functions
-
-autoload -U select-word-style
-select-word-style bash
-
-# load specific configurations
-for zshrc_snipplet in ~/.zsh.d/C[0-9][0-9]*[^~] ; do
-  source $zshrc_snipplet
-done
-
-# custom configs are taken from this file
-if [ -f ~/.zsh_config_for_`whoami` ]; then
-    source ~/.zsh_config_for_`whoami`
-fi
-
-# added by travis gem
-[ -f /Users/dbreuer/.travis/travis.sh ] && source /Users/dbreuer/.travis/travis.sh
-
-# Which plugins should be loaded
-plugins=(zsh-syntax-highlighting zsh-history-substring-search)
-
-# We need to load the plugins at the very end
-if [ -d $HOME/.zsh.d/plugins ]; then
-    for plugin in $plugins; do
-        source "$HOME/.zsh.d/plugins/$plugin/${plugin}.zsh"
-    done
-fi
-
-# vim: set ft=zsh:
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# Still have ponysay
+ponysay -o --f walter discord rainbowfly pinkieumbrellahat twilighttime pinkiesilly pinkiefly
+echo ""

@@ -1,6 +1,0 @@
-[submodule "etc/vim/snippets"]
-	path = etc/vim/snippets
-	url = git://github.com/railsbros-dirk/snipmate-snippets.git
-[submodule "git://github.com/railsbros-dirk/tmux-powerline.git"]
-	path = etc/tmux-powerline
-	url = git://github.com/erikw/tmux-powerline.git

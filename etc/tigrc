@@ -1,6 +1,0 @@
-set commit-order = topo      # Order commits topologically
-set git-colors = yes         # Do not read Git's color settings.
-set horizontal-scroll = 33%  # Scroll 33% of the view width
-set blame-options = -C -C -C # Blame lines from other files
-set line-graphics = yes      # Disable graphics characters
-set tab-size = 2             # Number of spaces per tab

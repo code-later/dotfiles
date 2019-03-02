@@ -1,5 +1,0 @@
-autoload -U tetris
-zle -N tetris
-bindkey -e "^T" tetris
-
-# vim: set ft=zsh:
