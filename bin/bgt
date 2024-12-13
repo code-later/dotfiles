@@ -1,0 +1,91 @@
+#! /usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/inline'
+
+gemfile do
+  source 'https://rubygems.org'
+
+  gem 'activesupport', require: false
+  gem 'debug'
+  gem 'image_processing'
+  gem 'nokogiri'
+  gem 'slop'
+end
+
+require 'pathname'
+require 'open-uri'
+require 'image_processing/vips'
+require 'active_support/core_ext/string/inflections'
+
+opts = Slop.parse do |o|
+  o.string '-c', '--chapters', 'Chapters file'
+  o.boolean '-d', '--debug', 'Enable debug flags'
+end
+
+if opts[:debug]
+  require 'debug'
+end
+
+class BGTToolKit
+  attr_reader :chapters, :debug
+
+  def initialize(chapters_path:, debug: false)
+    path = Pathname.new(chapters_path)
+    @chapters = path.open
+    @target_dir = path.dirname
+    @debug = debug
+  end
+
+  def process
+    chapters.each do |line|
+      match = line.match(/^(?<timecode>\d\d:\d\d:\d\d\.\d\d\d) (?<title>.*?)(?<o> <(?<url>.*)>)?$/)
+
+      puts match[:title]
+      puts "  [DEBUG] Line: #{line}" if debug
+      puts "  Timecode: #{match[:timecode]}"
+      puts "  URL: #{match[:url]}"
+      puts
+
+      next unless match[:url]
+
+
+      begin
+        image_url = if match[:url].include?('boardgamegeek')
+                      game_id = URI.parse(match[:url]).path.split('/')[2]
+
+                      html = URI.open("https://api.geekdo.com/xmlapi/boardgame/#{game_id}").read
+                      parsed_html = Nokogiri::HTML(html)
+                      parsed_html.at_xpath('//boardgame/image').content
+                    else
+                      html = URI.open(match[:url]).read
+                      parsed_html = Nokogiri::HTML(html)
+
+                      parsed_html = parsed_html.at_xpath('//head/meta[@property="og:image"]/@content').value
+                    end
+
+        puts image_url
+      rescue => e
+        puts "[ERROR] #{match[:url].inspect} Failed with #{e.message}"
+        next
+      end
+
+      begin
+        ImageProcessing::Vips
+          .source(URI.open(image_url))
+          .saver(quality: 85)
+          .convert('jpg')
+          .resize_and_pad(800, 800)
+          .call(destination: @target_dir.join("#{match[:title].downcase.parameterize}.jpg").to_s)
+      rescue => e
+        puts "Failed to load image #{image_url.inspect}"
+        puts e.message
+      end
+
+      sleep 2
+    end
+  end
+end
+
+bgt_tool_kit = BGTToolKit.new(chapters_path: opts[:chapters], debug: opts[:debug])
+bgt_tool_kit.process
