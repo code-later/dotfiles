@@ -1,0 +1,10 @@
+# /Users/dbreuer/.tmuxinator/innoq.yml
+
+name: innoq
+root: ~/Code/projects/INNOQ/src/socreatory
+
+windows:
+  - editor:
+      - vim .
+  - console:
+  - docker:

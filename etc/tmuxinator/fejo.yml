@@ -1,19 +1,11 @@
 # ~/.tmuxinator/fejo.yml
 
 name: fejo
-root: ~/Code/projects/fejo.dk/
+root: ~/Code/projects/fejo.dk/fejo-next/source/fejo-next
 
 windows:
-  - fejo-next:
-      root: ~/Code/projects/fejo.dk/fejo-next/
-      layout: main-horizontal
+  - editor:
       panes:
-        - # empty
-        - # empty
-        - cd source/machines
-  - fejo-legacy:
-      root: ~/Code/projects/fejo.dk/legacy_system/projects
-      layout: main-horizontal
-      panes:
-        - # empty
-        - # empty
+        - vim .
+  - console:
+  - docker:

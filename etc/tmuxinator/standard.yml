@@ -4,8 +4,8 @@ name: standard
 root: ~/
 
 windows:
+  - downloads:
+    - cd ~/Downloads
+
   - playground:
-      layout: main-horizontal
-      panes:
-        - cd ~/Code/sandbox
-        - cd ~/Downloads
+      - cd ~/Code/sandbox
