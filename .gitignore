@@ -3,6 +3,7 @@ etc/vim/.netrwhist
 etc/vim/.VimballRecord
 etc/vim/tmp
 etc/vim/doc
+etc/vim/undodir
 
 etc/zsh.d/plugins
 
