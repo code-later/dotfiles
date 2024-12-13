@@ -1,0 +1,11 @@
+#!/bin/sh
+# Show the current branch (for tmux)
+
+branch_name=$(cd $1 && git branch --show-current)
+
+if [ $? -eq 0 ]; then
+  echo "木$branch_name"
+else
+  echo "場$(tmux display-message -pF "#{pane_current_path}" | sed 's!\([^/]\)[^/]*/!\1/!g')"
+fi
+
