@@ -41,19 +41,6 @@ class Installer
     methods.grep(/install_/)
   end
 
-  def install_emacs
-    with_explanation('Configuring Emacs') do
-      unless File.exists?("./etc/emacs.d")
-        system "git clone -q --recursive https://github.com/syl20bnr/spacemacs etc/emacs.d"
-      end
-
-      link_dotfiles(dotfiles.grep(/spacemacs\Z|emacs\.d/))
-      Dir["etc/spacemacs-private/*"].each do |config_layer|
-        FileUtils.ln_sf(File.expand_path(config_layer), "etc/emacs.d/private/")
-      end
-    end
-  end
-
   def install_dotfiles
     with_explanation("Linking dotfiles found under etc/") do
       link_dotfiles(dotfiles - dotfiles.grep(/emacs\.d/))
@@ -63,7 +50,7 @@ class Installer
   def link_dotfiles(files)
     files.each do |dotfile|
       puts " - '#{dotfile}' to '#{options[:dotfile_dest]}' ..."
-      unless File.exists?(target = File.join(options[:dotfile_dest], ".#{File.basename(dotfile)}"))
+      unless File.exist?(target = File.join(options[:dotfile_dest], ".#{File.basename(dotfile)}"))
         FileUtils.ln_s(dotfile, target)
       end
     end
@@ -84,7 +71,7 @@ class Installer
         {:key => "core.repositoryformatversion", :value => "0"},
         {:key => "core.filemode", :value => "true"},
         {:key => "core.bare", :value => "false"},
-        {:key => "core.pager", :value => "less -R"},
+        {:key => "core.pager", :value => "less -XR"},
         {:key => "core.logallrefupdates", :value => "true"},
         {:key => "branch.autosetuprebase", :value => "always"},
         {:key => "branch.master.remote", :value => "origin"},

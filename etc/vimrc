@@ -1,29 +1,101 @@
 " === General Setup ===
+set noswapfile              " I don't like Swapfiles
+let g:netrw_banner=0        " disable netrw banner
 set nocompatible            " Use Vim settings, rather then Vi settings
 syntax enable               " Activate Syntax Highlight
-filetype plugin indent on
+" filetype plugin indent on
+set smartindent
+set autoindent
 set encoding=utf-8
-set nowrap                  " Deactivate Wrapping
+set wrap linebreak          " Wrap long line (navigate with gj / gk)
 set nrformats=              " Treat all numbers as decimal
-set noswapfile              " I don't like Swapfiles
 set nojoinspaces            " Insert only one space when joining lines
 set hlsearch                " Highlight Search Results
 set laststatus=2            " Always show status line
 set ttimeout
 set ttimeoutlen=100
+set hidden                  " Don't complain about leaving unsaved buffer
+" set background=dark       " Only for dark themes
+set termguicolors
+colorscheme solarized8_flat
 
-" Adjust to editor config
-set expandtab
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+" Use system clipboard
+set clipboard=unnamedplus,unnamed
 
-" Fuzzy finder without plugins
-set path+=**
-set wildmenu
+" Use global undodir
+set undodir=~/.vim/undodir
+set undofile
 
-" Disable banner in netrw
-let g:netrw_banner=0
+" === fzf ===
+" Fuzzy Finder with Ctrl+P
+nnoremap <C-p> :<C-u>FZF<cr>
+
+" === ctrlsf ===
+" Ripgrep interface
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+let g:ctrlsf_default_root = 'project'
+
+" === ale ===
+" highlight linter output with cats, but without a red gutter
+let g:ale_sign_column_always = 1
+let g:ale_sign_error="😺"
+let g:ale_sign_warning="😺"
+let g:ale_sign_info="😺"
+let g:ale_sign_style_error="😺"
+let g:ale_sign_style_warning="😺"
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
+" automatic formatting on save
+let g:ale_fix_on_save=1
+let g:ale_fixers = {
+\   'css': ['prettier'],
+\   'typescript': ['prettier'],
+\   'typescriptreact': ['prettier'],
+\   'html': ['prettier'],
+\}
+
+" use ale as the omnifunc
+set omnifunc=ale#completion#OmniFunc
+
+" === smart tab ===
+" enter tab when at beginning of line, otherwise: run omnifunc
+" https://vim.fandom.com/wiki/Smart_mapping_for_tab_completion
+function! SmartTab()
+  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+    return "\<Tab>"
+  else
+    return "\<C-X>\<C-O>"
+endfunction
+
+" use <c-r>= in insert mode to be able to call the function without leaving insert mode
+inoremap <Tab> <c-r>=SmartTab()<Return>
+
+" === leader key binding ===
+nnoremap <SPACE> <Nop>
+map <Space> <Leader>
+" nnoremap <leader>r :ALERename<Return>
+nnoremap <leader>d :ALEGoToDefinition<Return>
 
 " Clear the search buffer when hitting return
 nnoremap <CR> :nohlsearch<cr>
+
+" Adjust to editor config
+" set expandtab
+" set tabstop=2
+" set softtabstop=2
+" set shiftwidth=2
+
+" Fuzzy finder without plugins
+" set path+=**
+" set wildmenu
+
+" Easily switch between last used buffers
+nnoremap <Leader><Tab> :b#<CR>
