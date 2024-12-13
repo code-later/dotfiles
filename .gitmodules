@@ -1,0 +1,39 @@
+[submodule "etc/vim/pack/bundle/start/fugitive"]
+	path = etc/vim/pack/bundle/start/fugitive
+	url = https://tpope.io/vim/fugitive.git
+[submodule "etc/vim/pack/bundle/start/vim-visual-multi"]
+	path = etc/vim/pack/bundle/start/vim-visual-multi
+	url = https://github.com/mg979/vim-visual-multi
+[submodule "etc/vim/pack/bundle/start/ale"]
+	path = etc/vim/pack/bundle/start/ale
+	url = https://github.com/dense-analysis/ale.git
+[submodule "etc/vim/pack/bundle/start/vim-colors-solarized"]
+	path = etc/vim/pack/bundle/start/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "etc/vim/pack/bundle/start/editorconfig-vim"]
+	path = etc/vim/pack/bundle/start/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "etc/vim/pack/bundle/start/ctrlsf.vim"]
+	path = etc/vim/pack/bundle/start/ctrlsf.vim
+	url = https://github.com/dyng/ctrlsf.vim.git
+[submodule "etc/vim/pack/bundle/start/fzf"]
+	path = etc/vim/pack/bundle/start/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "etc/vim/pack/bundle/start/vim-commentary"]
+	path = etc/vim/pack/bundle/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "etc/vim/pack/bundle/start/vim-polyglot"]
+	path = etc/vim/pack/bundle/start/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "etc/vim/pack/bundle/start/vim-repeat"]
+	path = etc/vim/pack/bundle/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "etc/vim/pack/bundle/start/vim-sensible"]
+	path = etc/vim/pack/bundle/start/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git
+[submodule "etc/vim/pack/bundle/start/vim-surround"]
+	path = etc/vim/pack/bundle/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "etc/vim/pack/bundle/start/vim-solarized8"]
+	path = etc/vim/pack/bundle/start/vim-solarized8
+	url = https://github.com/lifepillar/vim-solarized8.git
