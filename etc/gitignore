@@ -5,3 +5,5 @@
 *.swp
 vendor/bundle
 tags
+.tern-port
+*.~undo-tree~
