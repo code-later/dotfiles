@@ -1,7 +1,5 @@
 # Dotfiles
 
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=railsbros_dirk&url=https://github.com/railsbros-dirk/dotfiles&title=dotfiles&language=&tags=github&category=software)
-
 This repository contains my opinionated collection of dotfiles. It mainly
 consists of zsh and Vim configuration. Feel free to use it or take any
 ideas from it.
