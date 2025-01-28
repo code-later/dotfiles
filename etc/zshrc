@@ -72,6 +72,18 @@ bindkey -M emacs '^N' history-substring-search-down
 # Manually load syntax highlighting
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Light theme for McFly based on system settings
+if [[ "$(defaults read -g AppleInterfaceStyle 2&>/dev/null)" != "Dark" ]]; then
+    export MCFLY_LIGHT=TRUE
+fi
+
+export MCFLY_FUZZY=2
+export MCFLY_DISABLE_MENU=TRUE
+export MCFLY_PROMPT="❯"
+
+# And activate MacFly
+eval "$(mcfly init zsh)"
+
 # Still have ponysay
 ponysay -o --f walter discord rainbowfly pinkieumbrellahat twilighttime pinkiesilly pinkiefly
 echo ""

@@ -1,0 +1,12 @@
+# ~/.tmuxinator/ludothekchen.yml
+
+name: ludothekchen
+root: /Users/dbreuer/Code/projects/ludothekchen
+
+windows:
+  - editor:
+      panes:
+        - vim .
+  - console:
+  - docker:
+

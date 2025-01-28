@@ -17,7 +17,7 @@ set ttimeoutlen=100
 set hidden                  " Don't complain about leaving unsaved buffer
 " set background=dark       " Only for dark themes
 set termguicolors
-colorscheme solarized8_flat
+colorscheme solarized8
 
 " Use system clipboard
 set clipboard=unnamedplus,unnamed
