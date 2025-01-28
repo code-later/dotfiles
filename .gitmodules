@@ -37,3 +37,6 @@
 [submodule "etc/vim/pack/bundle/start/vim-solarized8"]
 	path = etc/vim/pack/bundle/start/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8.git
+[submodule "etc/vim/pack/bundle/start/auto_mkdir2.vim"]
+	path = etc/vim/pack/bundle/start/auto_mkdir2.vim
+	url = https://github.com/arp242/auto_mkdir2.vim
